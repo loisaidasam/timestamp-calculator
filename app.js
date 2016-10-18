@@ -31,8 +31,12 @@ function filterNow(input) {
 function calculate_elapsed() {
   var stamp1 = filterNow($('#stamp1').val());
   var stamp2 = filterNow($('#stamp2').val());
-  var elapsed = Math.abs(moment(stamp1).diff(moment(stamp2))/1000) + " seconds";
-  $('#result').text(elapsed);
+  var elapsedSeconds = Math.abs(moment(stamp1).diff(moment(stamp2))/1000)
+  var elapsedMinutes = (elapsedSeconds / 60).toFixed(2);
+  var elapsedHours = (elapsedSeconds / 3600).toFixed(2);
+  var elapsedDays = (elapsedSeconds / 86400).toFixed(2);
+  var elapsedStr = elapsedSeconds + " seconds<br />" + elapsedMinutes + " minutes<br />" + elapsedHours + " hours<br />" + elapsedDays + " days";
+  $('#result').html(elapsedStr);
 }
 
 if (urlParams['stamp1'] && urlParams['stamp2']) {
